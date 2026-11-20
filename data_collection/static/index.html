@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MCHStreamer · Capture</title><link rel="stylesheet" href="/static/style.css"></head>
+<body>
+<header><div class="brand"><span class="mark">Ⅲ</span><div>MCHSTREAMER<span class="subbrand">DATA COLLECTION</span></div></div><div class="connection" id="connection">Connecting…</div></header>
+<main>
+<div class="heading"><div><div class="eyebrow">ACQUISITION WORKSPACE</div><h1>Listen. See. Capture.</h1><p>Multichannel audio and camera capture on a shared timeline.</p></div><div class="session-state"><span id="state">STANDBY</span><strong id="timer">00:00.0</strong></div></div>
+<div id="message" role="status" hidden></div>
+<div class="workspace">
+<aside class="panel setup"><div class="panel-heading"><h2>Capture setup</h2><span class="tag">16 CH</span></div>
+<label for="audio">Audio input</label><select id="audio"><option>Finding devices…</option></select>
+<label for="rate">Sample rate</label><select id="rate"><option value="44100">44.1 kHz</option></select>
+<div class="labelrow"><label>Channels <span id="selectedCount">16 selected</span></label><button class="textbtn" id="all">All</button></div>
+<div class="channels" id="channels" aria-label="Audio channel selection"></div><p class="hint">Click a channel to include or exclude it.</p>
+<div class="divider"></div>
+<label for="camera">Camera</label><select id="camera"><option>Finding cameras…</option></select>
+<label class="check"><input type="checkbox" id="demo"> Demo mode <span class="hint">Synthetic data</span></label>
+<button id="preview" class="secondary full">Start preview</button>
+<p class="hint">Preview opens both devices. Recording saves only the selected audio channels.</p>
+</aside>
+<section class="panel signal"><div class="panel-heading"><div><h2>Audio monitor</h2><p class="hint">120 ms window · normalized amplitude</p></div><span class="live-label" id="audioState">NO SIGNAL</span></div>
+<div class="wave-toolbar"><span>TIME SIGNAL</span><label class="check"><input type="checkbox" id="autoscale" checked> Auto scale</label></div>
+<div class="waves" id="waves"></div><div id="emptyChannels" hidden>Select a channel to display its signal.</div>
+<div class="spectro-toolbar"><label class="check"><input type="checkbox" id="spectro"> Spectrogram</label><select id="specChannel" aria-label="Spectrogram channel"></select></div>
+<div id="spectroWrap" hidden><div class="spec-axis"><span id="nyquist">22.05 kHz</span><canvas id="spectrogram" width="700" height="150" aria-label="Rolling spectrogram"></canvas><span>0 Hz</span></div><p class="hint">Last ~20 s · −100 to 0 dBFS · one channel to keep capture responsive</p></div>
+</section>
+<section class="right-column"><div class="panel camera-panel"><div class="panel-heading"><h2>Camera monitor</h2><span class="live-label" id="cameraState">NO SIGNAL</span></div><div class="video"><img id="video" alt="Live camera preview" hidden><div id="videoEmpty"><span class="camera-icon">▣</span><strong>Your camera, live.</strong><p>Start preview to check the frame.</p></div><span id="demoBadge" hidden>DEMO · SYNTHETIC</span></div><div class="video-meta"><span id="resolution">Capture resolution: waiting</span><span>Native frame timestamps</span></div></div>
+<div class="panel sync-panel"><div class="panel-heading"><h2>Timing & integrity</h2><span class="tag">SHARED CLOCK</span></div><div class="metrics"><div><span>Audio samples</span><strong id="audioSamples">—</strong></div><div><span>Video frames</span><strong id="videoFrames">—</strong></div><div><span>Audio age</span><strong id="audioAge">—</strong></div><div><span>Video age</span><strong id="videoAge">—</strong></div></div><div id="integrity" class="integrity">Waiting for capture</div><p class="hint">ADC audio timestamps + native camera PTS. Independent USB devices require a clap/flash calibration for precision alignment; hardware genlock is not available.</p></div></section>
+</div>
+<section class="panel save-panel"><div class="save-title"><h2>Record a session</h2><p class="hint">24-bit WAV + lossless synchronized MKV + timing logs</p></div><div class="save-input"><label for="filename">Session name</label><input id="filename" placeholder="Automatic datetime"><span class="hint">Leave blank for a fresh datetime on each take.</span></div><div class="save-input location"><label for="directory">Save location</label><input id="directory" value="/Users/peilab/Desktop/mchstreamer/data_collection/data"></div><button id="record" class="record" disabled><span class="record-dot"></span><span id="recordText">Save / Record</span><kbd>Z</kbd></button></section>
+<div id="lastTake" hidden></div><footer><span>MCHStreamer PDM16 · Local acquisition</span><span>Press <kbd>Z</kbd> to start or stop recording · Files stay on this computer</span></footer>
+</main><script src="/static/app.js"></script>
+</body></html>

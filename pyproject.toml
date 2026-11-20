@@ -1,0 +1,28 @@
+[project]
+name = "mchstreamer"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "av>=19.0.2",
+    "fastapi>=0.165.0",
+    "ipykernel>=7.4.0",
+    "jupyter>=1.1.1",
+    "numpy>=2.5.4",
+    "pillow>=13.0.0",
+    "pyobjc-framework-avfoundation>=13.0 ; sys_platform == 'darwin'",
+    "pyobjc-framework-coremedia>=13.0 ; sys_platform == 'darwin'",
+    "pyobjc-framework-libdispatch>=13.0 ; sys_platform == 'darwin'",
+    "pyobjc-framework-quartz>=13.0 ; sys_platform == 'darwin'",
+    "sounddevice>=0.5.6",
+    "soundfile>=0.14.0",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=9.2.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
